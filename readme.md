@@ -1,43 +1,49 @@
-# Daily News Digest
+# Resumo Diário de Notícias
 
-This application is designed to fetch news content from specified URLs, summarize it using the Google Gemini API, and then send the summarized news digest via email. It can be configured to fetch daily news or specific tech-related news.
+Esta aplicação foi projetada para buscar conteúdo de notícias de URLs especificadas, resumi-las usando a API Google Gemini e, em seguida, enviar o resumo das notícias por e-mail.
 
-## Features
+## Funcionalidades
 
-- **Content Extraction**: Uses Jina AI to extract clean content from web pages.
-- **AI Summarization**: Leverages Google Gemini 1.5 Flash to generate concise summaries of the extracted content.
-- **Email Delivery**: Sends the summarized news digest to a specified recipient via SMTP.
-- **Configurable News Sources**: Easily switch between daily news sources and tech-specific news sources.
-- **Environment Variable Support**: Securely manage API keys and email credentials using environment variables.
+- **Extração de Conteúdo**: Usa Jina AI para extrair conteúdo limpo de páginas da web.
+- **Resumo por IA**: Utiliza o Google Gemini 1.5 Flash para gerar resumos concisos do conteúdo extraído.
+- **Entrega por E-mail**: Envia o resumo das notícias para um destinatário especificado via SMTP.
+- **Fontes de Notícias Configuráveis**: Alterne facilmente entre fontes, ao informar a variável `TYPE_GETCONTENT` podemos pegar notícias de fontes diferentes.
+- **Suporte a Variáveis de Ambiente**: Gerencie com segurança chaves de API e credenciais de e-mail usando variáveis de ambiente.
 
-## Getting Started
+## Primeiros Passos
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Estas instruções ajudarão você a obter uma cópia do projeto e a executá-lo em sua máquina local para fins de desenvolvimento e teste.
 
-### Prerequisites
+### Pré-requisitos
 
 - Docker (recommended for easy setup)
 - Python 3.9+ (if running directly without Docker)
 
-### Installation
+### Instalação
 
-#### Using Docker (Recommended)
+#### Usando Docker (Recomendado)
 
-1. **Clone the repository:**
+1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/mattheuscassunde/getContent.git
+   git clone https://github.com/cassunde/getContent.git
    cd getContent
    ```
 
-2. **Create a `.env` file:**
-   Create a file named `.env` in the root directory of the project and add your environment variables. This file will be automatically loaded by the `dotenv` library.
+2. **Crie um arquivo `.env`:**
+   Crie um arquivo chamado `.env` no diretório raiz do projeto e adicione suas variáveis de ambiente. Este arquivo será carregado automaticamente pela biblioteca `dotenv`.
 
    ```
-   GOOGLE_API_KEY="YOUR_GOOGLE_API_KEY"
-   JINA_API_KEY="YOUR_JINA_API_KEY"
-   SENDER_EMAIL="your_email@example.com"
-   SENDER_PASSWORD="your_email_password"
-   RECIPIENT_EMAIL="recipient_email@example.com"
-   SMTP_SERVER="your_smtp_server"
-   SMTP_PORT="your_smtp_port"
+   GOOGLE_API_KEY="SUA_CHAVE_API_GOOGLE"
+   JINA_API_KEY="SUA_CHAVE_API_JINA"
+   SENDER_EMAIL="seu_email@exemplo.com"
+   SENDER_PASSWORD="sua_senha_de_email"
+   RECIPIENT_EMAIL="email_do_destinatario@exemplo.com"
+   SMTP_SERVER="seu_servidor_smtp"
+   SMTP_PORT="sua_porta_smtp"
+   ```
+2. **Executando**
+   Para executar com Docker, você pode usar o seguinte comando:
    
+   ```bash
+   docker run --rm --env-file ./.env  getcontent:0.0.1
+   ```

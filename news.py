@@ -43,9 +43,9 @@ def send_email(body):
         server.login(sender_email, sender_password)
         server.sendmail(sender_email, recipient_email, msg.as_string())
         server.quit()
-        print("Email sent successfully!")
+        print("Email enviado com sucesso!")
     except Exception as e:
-        print(f"Error sending email: {e}")
+        print(f"Error ao envia email: {e}")
 
 def get_content_from_url(url_to_scrape: str):
     """Usa a API da Jina para extrair o conteúdo de uma URL."""
@@ -115,8 +115,10 @@ def get_resume(content: str):
         print(f"Erro ao processar a resposta do resumo: {e}")
         return f"Não foi possível extrair o resumo da resposta da API: {response.text}"
 
-def main(type):
+def main():
     
+    type = os.getenv("TYPE_GETCONTENT")
+
     if type == 'daily':
         urls = ['https://techcrunch.com/', 'https://www.bbc.com/portuguese/topics/cz74k717pw5t', 'https://cearaagora.com.br/ultimas/']
     else:
@@ -129,5 +131,4 @@ def main(type):
             send_email(resume)
 
 if __name__ == "__main__":
-    print(sys.argv[1])
-    main(sys.argv[1])
+    main()
